@@ -57,7 +57,7 @@ services:
     ports:
       - 80:80
     profiles:
-      - otel
+      - nginx
     depends_on:
       - jaeger-all-in-one
       - otel-collector
