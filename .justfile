@@ -4,18 +4,18 @@ PROJECT := "telemetry"
 
 up:
     docker compose \
-    {{ if '${ENABLE_ZIPKIN}' == "1" { "--profile zipkin" } else { "" } }} \
-    {{ if '${ENABLE_PROMETHEUS}' == "1" { "--profile prometheus" } else { "" } }} \
-    {{ if '${ENABLE_NGINX}' == "1" { "--profile nginx" } else { "" } }} \
+    {{ if env_var('ENABLE_ZIPKIN') == "1" { "--profile zipkin" } else { "" } }} \
+    {{ if env_var('ENABLE_PROMETHEUS') == "1" { "--profile prometheus" } else { "" } }} \
+    {{ if env_var('ENABLE_NGINX') == "1" { "--profile nginx" } else { "" } }} \
     --profile otel \
     -p {{ PROJECT }} \
     up -d
 
 down:
     docker compose  \
-    {{ if '${ENABLE_ZIPKIN}' == "1" { "--profile zipkin" } else { "" } }} \
-    {{ if '${ENABLE_PROMETHEUS}' == "1" { "--profile prometheus" } else { "" } }} \
-    {{ if '${ENABLE_NGINX}' == "1" { "--profile nginx" } else { "" } }} \
+    {{ if env_var('ENABLE_ZIPKIN') == "1" { "--profile zipkin" } else { "" } }} \
+    {{ if env_var('ENABLE_PROMETHEUS') == "1" { "--profile prometheus" } else { "" } }} \
+    {{ if env_var('ENABLE_NGINX') == "1" { "--profile nginx" } else { "" } }} \
     --profile otel \
     -p {{ PROJECT }} \
     down
